@@ -69,8 +69,8 @@ export default function Contact() {
                                 </div>
                                 <div>
                                     <p className="text-sm text-muted-foreground">Email</p>
-                                    <a href="mailto:praneeshchandran06@gmail.com" className="text-lg font-medium hover:text-primary transition-colors">
-                                        praneeshchandran06@gmail.com
+                                    <a href="mailto:praneesh582@gmail.com" className="text-lg font-medium hover:text-primary transition-colors">
+                                        praneesh582@gmail.com
                                     </a>
                                 </div>
                             </div>
@@ -85,7 +85,7 @@ export default function Contact() {
                                     <a href="https://www.linkedin.com/in/praneesh773" target="_blank" rel="noreferrer" className="p-4 bg-muted rounded-xl hover:bg-[#0077b5] hover:text-white transition-all hover:scale-110">
                                         <FaLinkedin className="size-6" />
                                     </a>
-                                    <a href="#" target="_blank" rel="noreferrer" className="p-4 bg-muted rounded-xl hover:bg-[#f89f1b] hover:text-white transition-all hover:scale-110">
+                                    <a href="https://leetcode.com/u/Praneeshc/" target="_blank" rel="noreferrer" className="p-4 bg-muted rounded-xl hover:bg-[#f89f1b] hover:text-white transition-all hover:scale-110">
                                         <SiLeetcode className="size-6" />
                                     </a>
                                 </div>

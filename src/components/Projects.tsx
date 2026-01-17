@@ -14,6 +14,7 @@ type Project = {
     date: string;
     github?: string;
     demo?: string;
+    teamMembers?: string[];
 };
 
 const projects: Project[] = [
@@ -23,45 +24,54 @@ const projects: Project[] = [
         description: "Integrated platform for hospitals, blood banks, and donors with stock management.",
         longDescription: "A comprehensive solution connecting hospitals, blood banks, receivers, and donors. Features include FIFO Stock management, an integrated chatbot for queries, and an emergency call feature to streamline critical communication during blood requirements.",
         techStack: ["React.js", "Node.js", "Express.js", "MongoDB"],
-        date: "July 2025",
-        github: "#",
-        demo: "#"
+        date: "July 2025 - December 2025",
+        github: "https://github.com/Praneesh773/Blood",
+        demo: "https://bloodbank-g10h.onrender.com/",
+        teamMembers: ["Praneesh C", "Prateeksha GK", "Obupreethi G", "Megha EG"]
     },
     {
         id: 2,
-        title: "Integrated Camera View Portal",
-        description: "Cloud-based camera streaming portal for multi-location monitoring.",
-        longDescription: "Currently working on a project where cameras from 5 different locations are connected to the cloud and streamed to a centralized public portal. Allows real-time viewing accessibility.",
-        techStack: ["HTML", "Python", "Cloud"],
-        date: "Ongoing",
-        github: "#",
-    },
-    {
-        id: 3,
         title: "Senior Citizen Support Portal",
         description: "All-in-one platform for senior citizens including medical and grocery services.",
         longDescription: "Developed a platform offering doctor appointments, grocery delivery, and other essential features tailored for senior citizens. Includes Face Login models for ease of access.",
         techStack: ["MERN Stack", "FaceModels"],
-        date: "May 2025",
-        github: "#",
+        date: "March 2025 - July 2025",
+        github: "https://github.com/preethi123455/seniorcitizenportal",
+        demo: "https://senior-citizen-portal-frontend.onrender.com",
+        teamMembers: ["Praneesh C", "Prateeksha GK", "Obupreethi G", "Prajit Pranav K"]
     },
     {
-        id: 4,
+        id: 3,
         title: "Sentiment Analysis Using AI",
         description: "Emotion classification tool using VADER sentiment analysis.",
         longDescription: "Built a sentiment analyzer that classifies emotions from user input text using the VADER Sentiment analysis tool. Useful for feedback analysis and social monitoring.",
         techStack: ["Python", "VADER"],
-        date: "May 2025",
+        date: "January 2025 - May 2025",
         github: "#",
+        demo: "#",
+        teamMembers: ["Praneesh C", "Prateeksha GK", "Prajit Pranav K"]
     },
     {
-        id: 5,
+        id: 4,
         title: "Maserati Website Clone",
         description: "Enterprise-level product website recreation with modern UI.",
         longDescription: "Recreated and enhanced the Maserati enterprise product website. Focused on modern features, responsive design, and high-quality visual presentation.",
         techStack: ["MERN Stack"],
-        date: "May 2025",
+        date: "January 2025 - December 2025",
         github: "#",
+        demo: "#",
+        teamMembers: ["Praneesh C", "Prateeksha GK", "Prajit Pranav K"]
+    },
+    {
+        id: 5,
+        title: "Integrated Camera View Portal",
+        description: "Cloud-based camera streaming portal for multi-location monitoring.",
+        longDescription: "Currently working on a project where cameras from 5 different locations are connected to the cloud and streamed to a centralized public portal. Allows real-time viewing accessibility.",
+        techStack: ["HTML", "Python", "Cloud"],
+        date: "November 2025 - Ongoing",
+        github: "#",
+        demo: "#",
+        teamMembers: ["Praneesh C", "Mothi Balaaji V"]
     }
 ];
 
@@ -151,13 +161,26 @@ export default function Projects() {
 
                                         <h3 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">{selectedProject.title}</h3>
 
-                                        <div className="flex flex-wrap gap-2 mb-6">
+                                        <div className="flex flex-wrap gap-2 mb-4">
                                             {selectedProject.techStack.map(tech => (
                                                 <span key={tech} className="text-xs font-semibold bg-primary/10 text-primary px-3 py-1 rounded-full">
                                                     {tech}
                                                 </span>
                                             ))}
                                         </div>
+
+                                        {selectedProject.teamMembers && (
+                                            <div className="mb-6">
+                                                <h4 className="text-sm font-semibold text-foreground mb-2">Team Members:</h4>
+                                                <div className="flex flex-wrap gap-2">
+                                                    {selectedProject.teamMembers.map((member, index) => (
+                                                        <span key={index} className="text-xs font-medium text-primary bg-primary/10 px-3 py-1.5 rounded-full border border-primary/20">
+                                                            {member}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        )}
 
                                         <div className="prose prose-sm max-w-none text-muted-foreground mb-8">
                                             <p>{selectedProject.longDescription}</p>

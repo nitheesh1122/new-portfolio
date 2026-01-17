@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
+import CodingProfile from "@/components/CodingProfile";
 import Projects from "@/components/Projects";
 import HallOfFame from "@/components/Achievements";
 import Certifications from "@/components/Certifications";
@@ -29,6 +30,7 @@ export default function Home() {
       <Hero onOpenResume={() => setIsResumeOpen(true)} />
       <About />
       <Skills />
+      <CodingProfile />
       <Projects />
       <HallOfFame />
       <Contact />
