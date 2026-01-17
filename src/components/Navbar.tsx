@@ -25,12 +25,14 @@ export default function Navbar({ onOpenResume }: { onOpenResume?: () => void }) 
 
             const sections = navLinks.map(link => link.href.substring(1));
             let current = "";
+            const centerY = window.innerHeight / 2;
 
             for (const section of sections) {
                 const element = document.getElementById(section);
                 if (element) {
                     const rect = element.getBoundingClientRect();
-                    if (rect.top <= 300 && rect.bottom >= 100) {
+                    // Check if the section contains the visual center of the screen
+                    if (rect.top <= centerY && rect.bottom >= centerY) {
                         current = section;
                     }
                 }
@@ -61,6 +63,14 @@ export default function Navbar({ onOpenResume }: { onOpenResume?: () => void }) 
 
                 {/* Desktop Nav */}
                 <div className="hidden md:flex items-center gap-8">
+                    {/* Open to Work Indicator */}
+                    <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 mr-2">
+                        <span className="relative flex h-2 w-2">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                        </span>
+                        <span className="text-[10px] font-semibold text-green-600 uppercase tracking-wider">Available for work</span>
+                    </div>
                     {navLinks.map((link) => {
                         const isActive = activeSection === link.href.substring(1);
                         return (

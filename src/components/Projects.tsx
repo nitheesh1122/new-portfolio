@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "framer-motion";
 import { X, ExternalLink, Code } from "lucide-react";
 import { FaGithub } from "react-icons/fa"; // Using React Icons Github
 
@@ -75,6 +75,59 @@ const projects: Project[] = [
     }
 ];
 
+// 3D Tilt Card Component
+function TiltCard({ children, onClick, layoutId }: { children: React.ReactNode; onClick: () => void; layoutId: string }) {
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+
+    const mouseX = useSpring(x, { stiffness: 500, damping: 30 });
+    const mouseY = useSpring(y, { stiffness: 500, damping: 30 });
+
+    const rotateX = useTransform(mouseY, [-0.5, 0.5], ["7deg", "-7deg"]);
+    const rotateY = useTransform(mouseX, [-0.5, 0.5], ["-7deg", "7deg"]);
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        const width = rect.width;
+        const height = rect.height;
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+        const xPct = mouseX / width - 0.5;
+        const yPct = mouseY / height - 0.5;
+        x.set(xPct);
+        y.set(yPct);
+    };
+
+    const handleMouseLeave = () => {
+        x.set(0);
+        y.set(0);
+    };
+
+    return (
+        <motion.div
+            layoutId={layoutId}
+            style={{
+                rotateX,
+                rotateY,
+                transformStyle: "preserve-3d",
+            }}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            onClick={onClick}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="group relative h-full perspective-1000"
+        >
+            <div className="bg-white rounded-xl overflow-hidden border border-border hover:shadow-2xl transition-all duration-300 cursor-pointer h-full flex flex-col transform-gpu">
+                {children}
+            </div>
+        </motion.div>
+    );
+}
+
+// ... existing projects array ...
+
 export default function Projects() {
     const [selectedId, setSelectedId] = useState<number | null>(null);
     const selectedProject = projects.find(p => p.id === selectedId);
@@ -97,12 +150,10 @@ export default function Projects() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {projects.map((project) => (
-                        <motion.div
+                        <TiltCard
                             key={project.id}
                             layoutId={`card-${project.id}`}
-                            className="bg-white rounded-xl overflow-hidden border border-border hover:shadow-xl transition-shadow cursor-pointer group relative"
                             onClick={() => setSelectedId(project.id)}
-                            whileHover={{ y: -5 }}
                         >
                             <div className="p-6 h-full flex flex-col">
                                 <div className="flex justify-between items-start mb-4">
@@ -132,7 +183,7 @@ export default function Projects() {
                                     ))}
                                 </div>
                             </div>
-                        </motion.div>
+                        </TiltCard>
                     ))}
                 </div>
 
