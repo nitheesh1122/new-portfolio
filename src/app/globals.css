@@ -47,3 +47,61 @@ body {
   background-image: radial-gradient(var(--color-border) 1px, transparent 1px);
   background-size: 40px 40px;
 }
+
+/* Glitch Effect */
+@keyframes glitch-anim {
+  0% {
+    clip-path: inset(50% 0 30% 0);
+    transform: translate(-5px, 0);
+  }
+  20% {
+    clip-path: inset(10% 0 60% 0);
+    transform: translate(5px, 0);
+  }
+  40% {
+    clip-path: inset(40% 0 43% 0);
+    transform: translate(-5px, 0);
+  }
+  60% {
+    clip-path: inset(80% 0 5% 0);
+    transform: translate(5px, 0);
+  }
+  80% {
+    clip-path: inset(15% 0 70% 0);
+    transform: translate(-5px, 0);
+  }
+  100% {
+    clip-path: inset(10% 0 90% 0);
+    transform: translate(5px, 0);
+  }
+}
+
+.glitch-active {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch-active::before,
+.glitch-active::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--background); /* Ensure background matches to hide original text if needed */
+}
+
+.glitch-active::before {
+  left: 2px;
+  text-shadow: -1px 0 #ff00c1;
+  clip-path: inset(0 0 0 0);
+  animation: glitch-anim 0.3s infinite linear alternate-reverse;
+}
+
+.glitch-active::after {
+  left: -2px;
+  text-shadow: -1px 0 #00fff9;
+  clip-path: inset(0 0 0 0);
+  animation: glitch-anim 0.3s infinite linear alternate-reverse;
+}

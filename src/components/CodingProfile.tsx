@@ -1,6 +1,7 @@
 "use client";
 
 import { GitHubCalendar } from "react-github-calendar";
+import Image from "next/image";
 // @ts-ignore
 import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
@@ -73,12 +74,14 @@ export default function CodingProfile() {
                                 Praneeshc <ExternalLink className="size-4" />
                             </a>
                         </div>
-                        <div className="w-full flex justify-center items-center flex-grow min-h-[160px]">
-                            {/* LeetCode Stats Card - Using a popular open-source generator */}
-                            <img
+                        {/* LeetCode Stats Card - Using a popular open-source generator */}
+                        <div className="relative w-full max-w-[500px] aspect-[2/1]">
+                            <Image
                                 src="https://leetcard.jacoblin.cool/Praneeshc?theme=light&font=Inter&ext=heatmap"
                                 alt="LeetCode Stats"
-                                className="max-w-full h-auto rounded-lg shadow-sm"
+                                fill
+                                className="object-contain rounded-lg shadow-sm"
+                                unoptimized // Optional: if external generator doesn't play nice with optimization, but usually fine
                             />
                         </div>
                     </motion.div>

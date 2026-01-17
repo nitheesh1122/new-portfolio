@@ -5,7 +5,11 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
-import CodingProfile from "@/components/CodingProfile";
+import dynamic from "next/dynamic";
+
+const CodingProfile = dynamic(() => import("@/components/CodingProfile"), {
+  ssr: false,
+});
 import Projects from "@/components/Projects";
 import HallOfFame from "@/components/Achievements";
 import Certifications from "@/components/Certifications";
