@@ -10,8 +10,8 @@ const skillCategories = [
     {
         title: "Languages",
         skills: [
-            { name: "Java", icon: FaJava, color: "#007396", level: "Advanced" },
             { name: "C", icon: null, color: "#A8B9CC", level: "Intermediate" },
+            { name: "Java", icon: FaJava, color: "#007396", level: "Advanced" },
             { name: "JavaScript", icon: FaJs, color: "#F7DF1E", level: "Advanced" },
             { name: "Python", icon: FaPython, color: "#3776AB", level: "Intermediate" },
         ],
