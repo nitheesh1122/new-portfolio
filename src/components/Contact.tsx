@@ -12,6 +12,18 @@ export default function Contact() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+
+        // Get form values using IDs (simple and reliable without adding name attributes)
+        const name = (document.getElementById("name") as HTMLInputElement).value;
+        const email = (document.getElementById("email") as HTMLInputElement).value;
+        const message = (document.getElementById("message") as HTMLTextAreaElement).value;
+
+        const subject = `Portfolio Contact from ${name}`;
+        const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+
+        // Open mail client
+        window.location.href = `mailto:praneeshchandran06@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
         setSubmitted(true);
 
         // Trigger Confetti
@@ -69,8 +81,8 @@ export default function Contact() {
                                 </div>
                                 <div>
                                     <p className="text-sm text-muted-foreground">Email</p>
-                                    <a href="mailto:praneesh582@gmail.com" className="text-lg font-medium hover:text-primary transition-colors">
-                                        praneesh582@gmail.com
+                                    <a href="mailto:praneeshchandran06@gmail.com" className="text-lg font-medium hover:text-primary transition-colors">
+                                        praneeshchandran06@gmail.com
                                     </a>
                                 </div>
                             </div>
